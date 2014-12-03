@@ -2,8 +2,7 @@
 #include "qlabel.h"
 #include "newScene.h"
 #include "loadscene.h"
-#include "animationtest.h"
-#include <QTimer>
+
 StartScene::StartScene( Game* game) : Scene( game )
 {
 
@@ -14,6 +13,8 @@ StartScene::StartScene( Game* game) : Scene( game )
     Button2 = QRect( 310, 300, 180, 80 );
     Button3 = QRect( 310, 400, 180, 80 );
     alertButton = QRect( 100, 100, 120, 100 );
+    testX= 120;
+    testY= 120;
 }
 StartScene::~StartScene()
 {
@@ -22,6 +23,8 @@ StartScene::~StartScene()
 Scene* StartScene::update()
 {
     draw( 0, 0, "White.png" );
+    clickTest();
+
 
 
 	if( Button1.contains( lastCursor ) )
@@ -40,9 +43,9 @@ Scene* StartScene::update()
         drawCenter( 400-2, 440-2, "Exit.png" );
 
     if( alertButton.contains(lastCursor))
-        drawCenter( 160, 150, "Test.png");
+        drawCenter( testX, testY, "Test.png");
     else
-        drawCenter( 160-2, 150-2, "Test.png");
+        drawCenter( testX-2, testY-2, "Test.png");
 
 
 
@@ -79,11 +82,11 @@ bool StartScene::mouseEvent( int x, int y, MouseFunction function )
                 return true;
             }
 
-            if( alertButton.contains( x, y ) )
-            {
-                clickTest();
-                return true;
-            }
+
+
+
+
+
 	}
 	
 	return false;
@@ -103,8 +106,25 @@ void StartScene::clickButton3()
 {
     exit(0);
 }
+void StartScene::TestMoving(){
 
+    testX +=3.0;
+    testY +=3.0;
+
+}
 
 void StartScene::clickTest(){
 
+
+    TestMoving();
+    Timer = new QTimer(this);
+//    QObject::connect(Timer,SIGNAL(timeout()) ,SLOT(TestMoving()));
+
+ //   QTimer::singleShot(1000,this, SLOT(Delete()));
+  //  Timer->start(30);
+}
+
+void StartScene::Delete(){
+
+    delete Timer;
 }

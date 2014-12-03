@@ -89,7 +89,7 @@ bool Window::mouseFunction( MouseFunction function )
 void Window::makeTimer()
 {
 	setDrawTime();
-	startTimer(1);
+    startTimer(1);
 }
 void Window::timerEvent( QTimerEvent* event )
 {

@@ -3,11 +3,13 @@
 #include <QFontDatabase>
 #include "Global.h"
 
+
 class Game;
 class QRect;
 
 class Scene
 {
+
 public:
 	explicit Scene( Game* );
 	virtual ~Scene();
